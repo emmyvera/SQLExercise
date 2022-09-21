@@ -1,0 +1,55 @@
+-- To select all the rows and columns in the employees table
+-- SELECT * FROM employees
+
+-- To select just the first_name and last_name columns in the employee tables
+-- SELECT first_name, last_name FROM employees
+
+-- To select employees that earns 6000 tables
+-- SELECT * FROM employees WHERE salary = 6000
+
+-- To select employees that earns above 10000 tables
+-- SELECT * FROM employees WHERE salary > 10000
+
+-- To select employees that earns below 5000 tables
+-- SELECT * FROM employees WHERE salary < 5000
+
+-- To select employees that earns above and including 10000 tables
+-- SELECT * FROM employees WHERE salary > 10000
+
+-- To select employees that earns below and including 5000 tables
+-- SELECT * FROM employees WHERE salary < 5000
+
+-- To select employees that earns employee 10000 and 20000 tables
+-- SELECT * FROM employees WHERE salary BETWEEN 10000 AND 20000
+
+-- To select all the departments
+-- SELECT * FROM departments
+
+-- To select all the employees in IT and Sales Department
+-- SELECT * FROM employees WHERE department_id IN (6, 8)
+
+-- To select all the employees firstname that start with letter 'J'
+-- SELECT * FROM employees WHERE first_name LIKE 'J%'
+
+-- To select all the employees firstname that Contains with letter 'a'
+-- SELECT * FROM employees WHERE first_name LIKE '%a%'
+
+-- To select all the employees firstname that start with letter 'd'
+-- SELECT * FROM employees WHERE first_name ILIKE 'd%'
+
+-- The difference between ILIKE and LIKE is that ILIKE is Case insensitive and LIKE is case sensitive
+
+-- Select all the employees that doesn't have the letter a in their firstname 
+-- SELECT * FROM employees WHERE first_name NOT ILIKE '%a%'
+
+-- Select the first 5 employee
+-- SELECT * FROM employees LIMIT 5
+
+-- Select 5 employees and order them by their firstname 
+-- SELECT * FROM employees ORDER BY first_name LIMIT 5
+
+-- Select 5 employees and order them by their firstname in descending order
+-- SELECT * FROM employees ORDER BY first_name DESC LIMIT 5
+
+-- Select 5 employees and order them by their firstname first then their lastname
+-- SELECT * FROM employees ORDER BY first_name, last_name LIMIT 5

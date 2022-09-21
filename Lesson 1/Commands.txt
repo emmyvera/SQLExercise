@@ -1,0 +1,39 @@
+-- Create Table
+-- CREATE TABLE user_details (
+-- 	id SERIAL PRIMARY KEY,
+--     username TEXT NULL,
+--     first_name TEXT NULL,
+--     last_name TEXT NULL,
+--     gender TEXT NULL,
+--     password TEXT NULL,
+--     status CHARACTER VARYING (10) NULL
+-- );
+
+-- Add new column to existing table
+-- ALTER TABLE user_details
+--     ADD COLUMN phone TEXT NULL;
+
+-- Delete a column in existing table
+-- ALTER TABLE user_details
+--     DROP COLUMN phone
+
+-- Insert new data to rxisting table
+-- INSERT INTO user_details (username, first_name, last_name, gender, password, status) VALUES
+-- ('rogers63', 'david', 'john', 'Female', '123', 1),
+-- ('mike28', 'rogers', 'paul', 'Male', '456', 1),
+-- ('rivera92', 'david', 'john', 'Male', '789', 1),
+-- ('ross95', 'maria', 'sanders', 'Male', '321', 1),
+-- ('paul85', 'morris', 'miller', 'Female', '765', 1);
+
+-- To Udate a data in the delete
+-- UPDATE user_details
+-- SET gender = 'Female',
+-- password = 'password123'
+-- WHERE id = 4;
+
+-- To delete a data in the table
+-- DELETE FROM user_details
+-- WHERE id = 2;
+
+-- To delete the entire table
+-- DROP TABLE user_details;
