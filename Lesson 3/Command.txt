@@ -1,0 +1,56 @@
+-- Upper Function capitalize our text 
+SELECT UPPER(first_name), UPPER(last_name) FROM employees;
+
+-- Lower Function lower our text 
+SELECT LOWER(first_name), LOWER(last_name) FROM employees;
+
+-- Length Funtion count our text
+SELECT first_name, LENGTH(first_name) FROM employees;
+
+-- Select employees with firstname more than 5 letters
+SELECT * FROM employees WHERE LENGTH(first_name) >= 5;
+
+-- Select employees whose firstname is 'David'
+SELECT * FROM employees WHERE LOWER(first_name) = 'david';
+
+-- Select employees whose lastname is 'King'
+SELECT * FROM employees WHERE UPPER(last_name) = 'KING';
+
+-- Concat employess lastname & firstname to get their fullname
+SELECT last_name, first_name, CONCAT(UPPER(last_name), ' ', first_name) AS full_name FROM employees;
+
+-- Trim function remove spaces at the edge of our text
+SELECT TRIM(last_name) FROM employees;
+
+-- Select the first 3 letter of the employees last_name
+SELECT LEFT(last_name, 3) FROM employees;
+
+-- Select the last 3 letter of the employees last_name
+SELECT RIGHT(last_name, 3) FROM employees;
+
+-- Select all the employees whose last_name ends with g
+SELECT * FROM employees WHERE RIGHT(last_name, 1) = 'g';
+
+-- Select all the employees, create a column called phone
+-- And replace all the missing phone number with 'NO PHONE'
+SELECT * FROM employees;
+SELECT *, COALESCE(phone_number, 'NO PHONE') as phone FROM employees;
+
+SELECT salary FROM employees;
+
+-- Select the minium salary
+SELECT MIN(salary) FROM employees;
+SELECT * FROM employees WHERE salary = 2500;
+
+-- Select the maxium salary
+SELECT MAX(salary) FROM employees;
+SELECT * FROM employees WHERE salary = 24000;
+
+-- Select the average salary
+SELECT AVG(salary) FROM employees;
+
+-- Count all the employees
+SELECT COUNT(*) FROM employees;
+
+-- Sum all the employees salary
+SELECT SUM(salary) FROM employees;
