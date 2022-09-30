@@ -1,0 +1,36 @@
+-- Select all the employees
+SELECT * FROM employees;
+
+-- Select all the departments
+SELECT * FROM departments;
+
+-- Select and group all the employees by departments
+SELECT department_id, COUNT(*) FROM employees
+GROUP BY department_id
+ORDER BY department_id;
+
+-- Select and group all the employees by departments
+-- Select department that has more than 3 employees
+SELECT department_id, COUNT(*) FROM employees
+GROUP BY department_id
+HAVING COUNT(*) > 3
+ORDER BY department_id;
+
+-- Select and group all the employees by jobs
+SELECT job_id, COUNT(*) FROM employees
+GROUP BY job_id
+ORDER BY job_id;
+
+-- Subquries Examples
+SELECT COUNT(*) 
+FROM 
+(SELECT * FROM employees WHERE job_id = 4) AS subq;
+
+-- Subquries Examples
+SELECT e.department_id, d.department_name, e.no_employees 
+FROM
+(SELECT department_id, COUNT(*) AS no_employees FROM employees
+GROUP BY department_id
+ORDER BY department_id) AS e
+INNER JOIN departments AS d
+ON d.department_id = e.department_id
