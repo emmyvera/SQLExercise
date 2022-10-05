@@ -1,0 +1,65 @@
+CREATE TABLE presidents (
+  country VARCHAR PRIMARY KEY,
+  continent VARCHAR,
+  president VARCHAR
+);
+
+CREATE TABLE prime_ministers (
+  country VARCHAR PRIMARY KEY,
+  continent VARCHAR,
+  prime_minister VARCHAR
+);
+
+-- For this to work we have to let the folder be accessable
+-- Right click on the folder that has the file go to properties and 
+-- enalbe sharing for everyone
+COPY presidents
+FROM 'C:\Users\Documents\SQL\Lesson 5 Joinning\leaders2\presidents.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY prime_ministers
+FROM 'C:\Users\Documents\SQL\Lesson 5 Joinning\leaders2\prime_ministers.csv'
+DELIMITER ','
+CSV HEADER;
+
+-- View all president
+SELECT * FROM presidents;
+
+-- View all prime_ministers
+SELECT * FROM prime_ministers;
+
+-- Join two table on the country column
+SELECT p1.country, p1.continent, 
+prime_minister, president
+FROM prime_ministers AS p1
+INNER JOIN presidents AS p2
+ON p1.country = p2.country;
+
+-- Join table on country Using the USING clause
+-- This work when the both table has the same 
+-- column name
+SELECT p1.country, p1.continent, 
+prime_minister, president
+FROM presidents AS p1
+INNER JOIN prime_ministers AS p2
+USING (country);
+
+-- Performing a left join on the country column
+SELECT p1.country, prime_minister, president
+FROM prime_ministers AS p1
+LEFT JOIN presidents AS p2
+ON p1.country = p2.country;
+
+-- Performing a right join on the country column
+SELECT p2.country, prime_minister, president
+FROM prime_ministers AS p1
+RIGHT JOIN presidents AS p2
+ON p1.country = p2.country;
+
+-- Performing a full join on the country column
+SELECT p1.country AS pm_co, p2.country AS pres_co,
+prime_minister, president
+FROM prime_ministers AS p1
+FULL JOIN presidents AS p2
+ON p1.country = p2.country;
