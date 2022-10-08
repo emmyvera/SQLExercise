@@ -22,14 +22,29 @@
 -- To select employees that earns employee 10000 and 20000 tables
 -- SELECT * FROM employees WHERE salary BETWEEN 10000 AND 20000
 
+-- To select employees that earns less than 6000 tables and they are in the IT dept
+-- SELECT * FROM employees WHERE salary < 6000 AND department_id = 6;
+
+
+-- To select employees that earns less than 6000 tables or they are in the IT dept
+-- SELECT * FROM employees WHERE salary < 6000 OR department_id = 6;
+
+
 -- To select all the departments
 -- SELECT * FROM departments
 
 -- To select all the employees in IT and Sales Department
 -- SELECT * FROM employees WHERE department_id IN (6, 8)
 
+-- To select all the employees not in IT and Sales Department
+SELECT * FROM employees WHERE department_id NOT IN (6, 8)
+
 -- To select all the employees firstname that start with letter 'J'
 -- SELECT * FROM employees WHERE first_name LIKE 'J%'
+
+-- To select all the employees firstname that start with letter 'J' OR 'A%'
+-- SELECT * FROM employees WHERE first_name ILIKE 'J%' OR first_name ILIKE 'A%' 
+
 
 -- To select all the employees firstname that Contains with letter 'a'
 -- SELECT * FROM employees WHERE first_name LIKE '%a%'
