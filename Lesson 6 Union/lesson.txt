@@ -1,0 +1,116 @@
+CREATE TABLE monarchs (
+  country VARCHAR   PRIMARY KEY,
+  continent VARCHAR,
+  monarch VARCHAR
+);
+
+COPY monarchs
+FROM 'C:\Users\Emmyvera\Documents\SQL\Lesson 5 Joinning\leaders2\monarchs.csv'
+DELIMITER ','
+CSV HEADER;
+
+SELECT prime_minister AS leader, country
+FROM prime_ministers
+
+UNION
+
+SELECT monarch, country
+FROM monarchs
+ORDER BY country;
+
+SELECT prime_minister AS leader, country
+FROM prime_ministers
+UNION ALL
+SELECT monarch, country
+FROM monarchs
+ORDER BY country
+LIMIT 10;
+
+SELECT * FROM prime_ministers;
+SELECT * FROM monarchs;
+
+SELECT country
+FROM prime_ministers
+INTERSECT
+SELECT country
+FROM presidents;
+
+SELECT *
+FROM prime_ministers;
+
+SELECT *
+FROM presidents;
+
+SELECT country, prime_minister AS leader
+FROM prime_ministers
+INTERSECT
+SELECT country, president
+FROM presidents;
+
+SELECT country, prime_minister AS leader
+FROM prime_ministers
+INTERSECT
+SELECT country, monarch AS leader
+FROM monarchs;
+
+SELECT monarch, country
+FROM monarchs
+EXCEPT
+SELECT prime_minister, country
+FROM prime_ministers;
+
+CREATE TABLE states (
+  name VARCHAR PRIMARY KEY,
+  continent VARCHAR,
+  indep_year INTEGER,
+  fert_rate REAL,
+  women_parli_perc REAL 
+);
+
+COPY states
+FROM 'C:\Users\Emmyvera\Documents\SQL\Lesson 5 Joinning\leaders2\states.csv'
+DELIMITER ','
+CSV HEADER;
+
+SELECT president, country, continent
+FROM presidents
+WHERE country IN
+(SELECT name
+FROM states
+WHERE indep_year < 1800);
+
+SELECT prime_minister, country, continent
+FROM prime_ministers
+WHERE country NOT IN
+(SELECT name
+FROM states
+WHERE indep_year < 1800);
+
+SELECT * FROM states;
+
+SELECT AVG(fert_rate) FROM states;
+
+SELECT name, fert_rate
+FROM states
+WHERE continent = 'Asia'
+AND fert_rate >
+(SELECT AVG(fert_rate)
+FROM states);
+
+SELECT continent, MAX(women_parli_perc) AS max_perc
+FROM states
+GROUP BY continent
+ORDER BY continent;
+
+SELECT monarchs.continent
+FROM monarchs, states
+WHERE monarchs.continent = states.continent
+ORDER BY continent;
+
+SELECT DISTINCT monarchs.continent, subquery.max_perc
+FROM monarchs,
+(SELECT continent, MAX(women_parli_perc) AS max_perc
+FROM states
+GROUP BY continent) AS subquery
+WHERE monarchs.continent = subquery.continent
+ORDER BY continent;
