@@ -1,0 +1,23 @@
+CREATE TABLE summer (
+  Year VARCHAR,
+  City VARCHAR,
+  Sport VARCHAR,
+  Discipline VARCHAR,
+  Athlete VARCHAR,
+  Country VARCHAR,
+  Gender VARCHAR,
+  Event VARCHAR,
+  Medal VARCHAR
+);
+
+COPY summer
+FROM 'C:\Users\Emmyvera\Documents\SQL\Lesson 8 Window Function\summer.csv'
+DELIMITER ','
+CSV HEADER;
+
+ALTER TABLE summer
+ALTER COLUMN Year TYPE NUMERIC 
+USING year::numeric;
+
+Select * From summer Limit 5;
+Select Distinct Year From summer;

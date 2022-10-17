@@ -1,0 +1,19 @@
+-- CASE Lesson
+Select * From employees;
+
+Select Max(salary) From employees;
+Select Min(salary) From employees;
+Select Avg(salary) From employees;
+
+Select Max(salary) as max_salary,
+        Min(salary) as min_salary,
+        Avg(salary) as avg_salary
+From employees;
+
+Select 
+Concat(first_name, ' ', last_name) as full_name,
+department_id, salary,
+CASE WHEN salary Between 2500 And 8000 THEN 'Low Salary'
+     WHEN salary Between 9000 And 16000 THEN 'Mid Salary'
+     ELSE 'High Salary' END AS Salary_Category
+From employees
