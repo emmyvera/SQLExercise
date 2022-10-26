@@ -1,0 +1,85 @@
+WITH Russia_Medals AS (
+SELECT
+Year, COUNT(*) AS Medals
+FROM Summer
+WHERE
+Country = 'RUS'
+AND Medal = 'Gold'
+GROUP BY Year
+ORDER BY Year ASC
+)
+
+
+WITH Russia_Medals AS (
+SELECT
+Year, COUNT(*) AS Medals
+FROM Summer
+WHERE
+Country = 'RUS'
+AND Medal = 'Gold'
+GROUP BY Year
+ORDER BY Year ASC
+)
+
+SELECT
+Year, Medals,
+MAX(Medals)
+OVER (ORDER BY Year ASC
+ROWS BETWEEN
+CURRENT ROW AND 3 FOLLOWING)
+AS Max_Medals_Next
+FROM Russia_Medals
+ORDER BY Year ASC;
+
+WITH US_Medals AS (
+SELECT
+Year, COUNT(*) AS Medals
+FROM Summer
+WHERE
+Country = 'USA'
+AND Medal = 'Gold'
+AND Year >= 1980
+GROUP BY Year
+ORDER BY Year ASC)
+
+SELECT
+Year, Medals,
+AVG(Medals) OVER
+(ORDER BY Year ASC
+ROWS BETWEEN
+2 PRECEDING AND CURRENT ROW) AS Medals_MA
+FROM US_Medals
+ORDER BY Year ASC;
+
+WITH US_Medals AS (
+SELECT
+Year, COUNT(*) AS Medals
+FROM Summer
+WHERE
+Country = 'USA'
+AND Medal = 'Gold'
+AND Year >= 1980
+GROUP BY Year
+ORDER BY Year ASC)
+
+SELECT
+Year, Medals,
+ROUND(AVG(Medals) OVER
+(ORDER BY Year ASC
+ROWS BETWEEN
+CURRENT ROW AND 2 FOLLOWING), 0) AS Medals_MA
+FROM US_Medals
+ORDER BY Year ASC;
+
+SELECT
+Year, Medals,
+MAX(Medals)
+OVER (ORDER BY Year ASC) AS Max_Medals,
+MAX(Medals)
+OVER (ORDER BY Year ASC
+ROWS BETWEEN
+1 PRECEDING AND CURRENT ROW)
+AS Max_Medals_Last
+FROM Russia_Medals
+ORDER BY Year ASC;
+
